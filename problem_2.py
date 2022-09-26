@@ -2,11 +2,6 @@ import os
 from collections import deque
 
 
-def file_has_suffix(suffix: str, filepath: str):
-    suffix_length = len(suffix)
-    return filepath[-suffix_length:] == suffix
-
-
 def find_files_under_dir(suffix: str, path: str):
 
     deq = deque([path])
@@ -14,7 +9,7 @@ def find_files_under_dir(suffix: str, path: str):
     while deq:
         currentNode = deq.popleft()
         if os.path.isfile(currentNode):
-            if file_has_suffix(suffix, currentNode):
+            if currentNode.endswith(suffix):
                 result.append(currentNode)
         elif os.path.isdir(currentNode):
             expanded = os.listdir(currentNode)
@@ -45,7 +40,7 @@ def find_files(suffix: str, path: str):
         return []
 
     if os.path.isfile(path):
-        if file_has_suffix(suffix, path):
+        if path.endswith(suffix):
             return [path]
         else:
             return []
