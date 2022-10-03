@@ -6,7 +6,7 @@
 
 ## Implementation explanation:
 
-The directory is of a tree structure, and each file is a leaf. Since we're going to find all file with certain extension, we need to check all files/directories under the given directory. So we can use DFS or BFS to solve the problem. BFS will need more space for the queue of objects to visit, while DFS will need to use recursion.
+The directory is of a tree structure, and each file is a leaf. Since we're going to find all file with certain extension, we need to check all files/directories under the given directory. So we can use DFS or BFS to solve the problem. BFS will need more space for the queue of objects to visit, while DFS will need to use recursion. Also, BFS seems to be more intuitive for this problem.
 
 ## Costs
 
