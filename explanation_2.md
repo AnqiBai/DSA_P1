@@ -1,33 +1,21 @@
-Finding Files
-For this problem, the goal is to write code for finding all files under a directory (and all directories beneath it) that end with ".c"
+# File Recursion
 
-Here is an example of a test directory listing, which can be downloaded here:
+## Requirements
 
-./testdir
-./testdir/subdir1
-./testdir/subdir1/a.c
-./testdir/subdir1/a.h
-./testdir/subdir2
-./testdir/subdir2/.gitkeep
-./testdir/subdir3
-./testdir/subdir3/subsubdir1
-./testdir/subdir3/subsubdir1/b.c
-./testdir/subdir3/subsubdir1/b.h
-./testdir/subdir4
-./testdir/subdir4/.gitkeep
-./testdir/subdir5
-./testdir/subdir5/a.c
-./testdir/subdir5/a.h
-./testdir/t1.c
-./testdir/t1.h
-Python's os module will be useful—in particular, you may want to use the following resources:
+- find all files under a directory that have certain file extension.
 
-os.path.isdir(path)
+## Implementation explanation:
 
-os.path.isfile(path)
+The directory is of a tree structure, and each file is a leaf. Since we're going to find all file with certain extension, we need to check all files/directories under the given directory. So we can use DFS or BFS to solve the problem. BFS will need more space for the queue of objects to visit, while DFS will need to use recursion.
 
-os.listdir(directory)
+## Costs
 
-os.path.join(...)
+BFS:
 
-Note: os.walk() is a handy Python method which can achieve this task very easily. However, for this problem you are not allowed to use os.walk().
+- space: O(n) (worst case, n is the number of nodes)
+- Time: O(n) (all files need to be checked)
+
+DFS:
+
+- space: O(h) (h is the height of the directory tree, and this space requirement is from the function call stack.)
+- Time: O(n) (all files need to be checked)
