@@ -10,6 +10,12 @@ class LRU_Cache(object):
 
     def __init__(self, capacity):
         # Initialize class variables
+        if not isinstance(capacity, int):
+            print("Invalid input. Please use an integer for LRU_Cache capacity!")
+            return None
+        elif capacity <= 0:
+            print(
+                "Invalid input. Please use a positive integer number for LRU_Cache capacity.")
         self.capacity = capacity
         self.count = 0
         self.cachemap = dict()
@@ -119,7 +125,7 @@ assert cache3.get(96) == 'value96'
 assert cache3.get(97) == 'value97'
 assert cache3.get(98) == 'value98'
 assert cache3.get(99) == 'value99'
-# Test Case 3
+# Test Case 3 - This tests against a large number, can this be treated as an edge case?
 cache4 = LRU_Cache(20000)
 for i in range(1500):
     cache4.set(i, 'value' + str(i))
@@ -129,3 +135,17 @@ assert cache4.DllTail.prev.value == 'value0'
 assert cache4.DllHead.next.value == 'value1499'
 assert cache4.get('1499') == -1
 assert cache4.get(1499) == 'value1499'
+
+# Test Case 4: edge case
+cache5 = LRU_Cache(0)
+cache6 = LRU_Cache(None)
+cache7 = LRU_Cache(-1)
+
+# Test Case 5: edge case
+cache8 = LRU_Cache(1)
+for i in range(1500):
+    cache8.set(i, 'value' + str(i))
+assert cache8.count == 1
+assert cache8.capacity == 1
+assert cache8.DllHead.next.value == 'value1499'
+assert cache8.DllTail.prev.value == 'value1499'
